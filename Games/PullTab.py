@@ -6,7 +6,7 @@ class PullTab(Game):
         # Must be passed a price in order to guarantee proper calculations, as not all lowest prizes are the cost
         self.type = Game.PULLTABSTRING
         self.link = (
-                "https://ialottery.com/Pages/Games-Pulltab/PulltabGamesDetail.aspx?g="
-                + str(id)
+            "https://ialottery.com/Pages/Games-Pulltab/PulltabGamesDetail.aspx?g="
+            + str(id)
         )
         super().__init__(id, price)

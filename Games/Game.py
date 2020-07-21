@@ -26,8 +26,8 @@ class Game:
                 temp = table[row].text[1:]
                 if temp == "ackpot*":
                     temp = self.soup.find(id="ContentPlaceHolder1_lblIPJPAmount").text[
-                           1:
-                           ]
+                        1:
+                    ]
                 if temp[0] == "$":
                     temp = temp[1:]
                 temp = temp.replace(",", "")
@@ -96,14 +96,14 @@ class Game:
         toReturn = ""
         if self.validGame:
             toReturn += (
-                    "Name/ID: "
-                    + self.gameName
-                    + "/"
-                    + str(self.id)
-                    + "\nPrice ${0:.2f}".format(self.price)
-                    + "\nOdds: {0:.1%}".format(self.overallOdds)
-                    + "\nExpected ROI: ${0:.2f}".format(self.roi)
-                    + "\nCents on the dollar: ¢{0:.1f}".format(100 * self.onDollar)
+                "Name/ID: "
+                + self.gameName
+                + "/"
+                + str(self.id)
+                + "\nPrice ${0:.2f}".format(self.price)
+                + "\nOdds: {0:.1%}".format(self.overallOdds)
+                + "\nExpected ROI: ${0:.2f}".format(self.roi)
+                + "\nCents on the dollar: ¢{0:.1f}".format(100 * self.onDollar)
             )
             if self.type == self.INSTAPLAYSTRING:
                 toReturn += "\nWorthwhile Jackpot Value: ${:,}".format(

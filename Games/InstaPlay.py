@@ -6,8 +6,8 @@ class InstaPlay(Game):
         # Must be passed a price in order to guarantee proper calculations, as not all lowest prizes are always the cost
         self.type = Game.INSTAPLAYSTRING
         self.link = (
-                "https://ialottery.com/Pages/Games-InstaPlay/InstaPlayGamesDetail.aspx?g="
-                + str(id)
+            "https://ialottery.com/Pages/Games-InstaPlay/InstaPlayGamesDetail.aspx?g="
+            + str(id)
         )
         super().__init__(id, price)
 

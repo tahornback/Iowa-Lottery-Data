@@ -38,7 +38,9 @@ class AllPullTabs:
         sortbyoverallodds = sorted(
             allPullTabs.games, key=Game.sortByOverallOdds, reverse=True
         )
-        sortbyondollar = sorted(allPullTabs.games, key=Game.sortByOnDollar, reverse=True)
+        sortbyondollar = sorted(
+            allPullTabs.games, key=Game.sortByOnDollar, reverse=True
+        )
         print("\nsorted by name")
         for y in sortbygame:
             print(y, "\n")
