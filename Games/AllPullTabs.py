@@ -7,7 +7,8 @@ from Games.PullTab import PullTab
 
 
 class AllPullTabs:
-    def __init__(self):
+    def __init__(self, db):
+        print("Initializing AllPullTabs")
         site = urllib.request.urlopen(
             "https://ialottery.com/Pages/Games-Pulltab/PulltabGamesListing.aspx"
         )
@@ -22,7 +23,7 @@ class AllPullTabs:
                 price = float(price[1:])
             elif price[2] == "¢":
                 price = float("0." + price[:2])
-            self.games.append(PullTab(item["href"].split("=")[1], price))
+            self.games.append(PullTab(item["href"].split("=")[1], db, price))
 
     def __str__(self):
         toReturn = "Games:\n"
@@ -30,16 +31,14 @@ class AllPullTabs:
             toReturn += game.gameName + "\n"
         return toReturn
 
-    def setupPullTabs():
-        print("Getting Pull Tab Games")
-        allPullTabs = AllPullTabs()
+    def printAllPullTabs(self):
         print("Pull Tabs")
-        sortbygame = sorted(allPullTabs.games, key=Game.sortByGameName)
+        sortbygame = sorted(self.games, key=Game.sortByGameName)
         sortbyoverallodds = sorted(
-            allPullTabs.games, key=Game.sortByOverallOdds, reverse=True
+            self.games, key=Game.sortByOverallOdds, reverse=True
         )
         sortbyondollar = sorted(
-            allPullTabs.games, key=Game.sortByOnDollar, reverse=True
+            self.games, key=Game.sortByOnDollar, reverse=True
         )
         print("\nsorted by name")
         for y in sortbygame:

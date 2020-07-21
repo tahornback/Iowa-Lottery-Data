@@ -4,61 +4,34 @@ from bs4 import *
 
 
 class Game:
-    INVALIDGAME = "Invalid Game"
-    SCRATCHTICKETSTRING = "scratch"
-    INSTAPLAYSTRING = "instaplay"
-    PULLTABSTRING = "pulltab"
+    INVALID_GAME = "Invalid Game"
+    SCRATCH_TICKET_STRING = "scratch"
+    INSTA_PLAY_STRING = "instaplay"
+    PULL_TAB_STRING = "pulltab"
 
-    def __init__(self, id, price=-1):
+    def __init__(self, id, db, price=-1):
         self.id = id
+        self.price = price
+        self.gameName = self.INVALID_GAME
+        self.validGame = False
+        self.odds = None
+        self.overallOdds = None
+        self.roi = None
+        self.onDollar = None
+        self.prizeMoney = None
+        self.database = db  # Preferably this would be from dependency injection
+
+        query = self.database.findGameById(id)
+        print(query)
+        # If not in db
         self.site = urllib.request.urlopen(self.link)
         self.soup = BeautifulSoup(self.site, features="html.parser")
         try:
-            self.gameName = self.soup.find(
-                id="ContentPlaceHolder1_gameDetail_GameName"
-            ).text
-            prizeSet = self.soup.find(id="Prizes")
-            self.validGame = True
-            table = prizeSet.find_all("td")
-            self.prizeMoney = []
-            self.odds = []
-            for row in range(0, len(table) - 2, 2):
-                temp = table[row].text[1:]
-                if temp == "ackpot*":
-                    temp = self.soup.find(id="ContentPlaceHolder1_lblIPJPAmount").text[
-                        1:
-                    ]
-                if temp[0] == "$":
-                    temp = temp[1:]
-                temp = temp.replace(",", "")
-                temp = float(temp)
-                # temp = int(temp)
-                self.prizeMoney.append(temp)
-                split = table[row + 1].text.split(" ")
-                oddsDecimal = float(split[1].replace(",", "")) / float(
-                    split[3].replace(",", "")
-                )
-                self.odds.append(oddsDecimal)
-            self.overallOdds = 0
-            for odd in self.odds:
-                self.overallOdds += odd
-            self.roi = 0
-            if price == -1:
-                self.price = self.prizeMoney[0]
-            else:
-                self.price = price
-            for pos in range(len(self.odds)):
-                self.roi += self.prizeMoney[pos] * self.odds[pos]
-            self.onDollar = self.roi / self.price
+            self.parseValuesFromSoup()
+            self.calculateNonSoupValues()
         except AttributeError as err:
             print(err)
-            self.gameName = self.INVALIDGAME
-            self.validGame = False
-            self.odds = None
-            self.overallOdds = None
-            self.roi = None
-            self.onDollar = None
-            self.prizeMoney = None
+            self.invalidAll()
         self.attrs = {
             "validGame": self.validGame,
             "gameName": self.gameName,
@@ -68,6 +41,51 @@ class Game:
             "roi": self.roi,
             "onDollar": self.onDollar,
         }
+
+    def invalidAll(self):
+        self.gameName = self.INVALID_GAME
+        self.validGame = False
+        self.odds = None
+        self.overallOdds = None
+        self.roi = None
+        self.onDollar = None
+        self.prizeMoney = None
+
+    def calculateNonSoupValues(self):
+        self.overallOdds = 0
+        for odd in self.odds:
+            self.overallOdds += odd
+        self.roi = 0
+        self.price = self.prizeMoney[0] if self.price == -1 else self.price
+        for pos in range(len(self.odds)):
+            self.roi += self.prizeMoney[pos] * self.odds[pos]
+        self.onDollar = self.roi / self.price
+
+    def parseValuesFromSoup(self):
+        self.gameName = self.soup.find(
+            id="ContentPlaceHolder1_gameDetail_GameName"
+        ).text
+        prizeSet = self.soup.find(id="Prizes")
+        self.validGame = True
+        table = prizeSet.find_all("td")
+        self.prizeMoney = []
+        self.odds = []
+        for row in range(0, len(table) - 2, 2):
+            temp = table[row].text[1:]
+            if temp == "ackpot*":
+                temp = self.soup.find(id="ContentPlaceHolder1_lblIPJPAmount").text[
+                       1:
+                       ]
+            if temp[0] == "$":
+                temp = temp[1:]
+            temp = temp.replace(",", "")
+            temp = float(temp)
+            self.prizeMoney.append(temp)
+            split = table[row + 1].text.split(" ")
+            oddsDecimal = float(split[1].replace(",", "")) / float(
+                split[3].replace(",", "")
+            )
+            self.odds.append(oddsDecimal)
 
     def sortByGameName(self):
         return self.attrs["gameName"]
@@ -96,19 +114,19 @@ class Game:
         toReturn = ""
         if self.validGame:
             toReturn += (
-                "Name/ID: "
-                + self.gameName
-                + "/"
-                + str(self.id)
-                + "\nPrice ${0:.2f}".format(self.price)
-                + "\nOdds: {0:.1%}".format(self.overallOdds)
-                + "\nExpected ROI: ${0:.2f}".format(self.roi)
-                + "\nCents on the dollar: ¢{0:.1f}".format(100 * self.onDollar)
+                    "Name/ID: "
+                    + self.gameName
+                    + "/"
+                    + str(self.id)
+                    + "\nPrice ${0:.2f}".format(self.price)
+                    + "\nOdds: {0:.1%}".format(self.overallOdds)
+                    + "\nExpected ROI: ${0:.2f}".format(self.roi)
+                    + "\nCents on the dollar: ¢{0:.1f}".format(100 * self.onDollar)
             )
-            if self.type == self.INSTAPLAYSTRING:
+            if self.type == self.INSTA_PLAY_STRING:
                 toReturn += "\nWorthwhile Jackpot Value: ${:,}".format(
                     self.worthwhileValue
                 )
         else:
-            return self.INVALIDGAME
+            return self.INVALID_GAME
         return toReturn

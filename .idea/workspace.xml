@@ -27,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
     <configuration name="IAlot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
@@ -83,31 +83,39 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595297968338">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595297968338" />
+    <state x="1231" y="647" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595295817260">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="1231" y="647" key="#com.intellij.fileTypes.FileTypeChooser/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595295817260" />
     <state x="1320" y="607" key="FileChooserDialogImpl" timestamp="1595290763759">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
     <state x="5490" y="-285" key="FileChooserDialogImpl/0.0.3072.1728/3840.-1044.3840.2160@3840.-1044.3840.2160" timestamp="1588116026503" />
     <state x="1320" y="607" key="FileChooserDialogImpl/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290763759" />
-    <state width="3045" height="431" key="GridCell.Tab.0.bottom" timestamp="1595290682710">
+    <state width="3045" height="431" key="GridCell.Tab.0.bottom" timestamp="1595303335513">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.bottom/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290682710" />
-    <state width="3045" height="431" key="GridCell.Tab.0.center" timestamp="1595290682710">
+    <state width="3045" height="431" key="GridCell.Tab.0.bottom/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
+    <state width="3045" height="431" key="GridCell.Tab.0.center" timestamp="1595303335513">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.center/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290682710" />
-    <state width="3045" height="431" key="GridCell.Tab.0.left" timestamp="1595290682710">
+    <state width="3045" height="431" key="GridCell.Tab.0.center/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
+    <state width="3045" height="431" key="GridCell.Tab.0.left" timestamp="1595303335513">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.left/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290682710" />
-    <state width="3045" height="431" key="GridCell.Tab.0.right" timestamp="1595290682710">
+    <state width="3045" height="431" key="GridCell.Tab.0.left/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
+    <state width="3045" height="431" key="GridCell.Tab.0.right" timestamp="1595303335513">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.right/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290682710" />
-    <state x="914" y="420" key="SettingsEditor" timestamp="1595290802105">
+    <state width="3045" height="431" key="GridCell.Tab.0.right/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
+    <state x="914" y="420" key="SettingsEditor" timestamp="1595298612515">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="914" y="420" key="SettingsEditor/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290802105" />
+    <state x="914" y="420" key="SettingsEditor/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595298612515" />
     <state x="1147" y="646" key="com.intellij.ide.util.TipDialog" timestamp="1595290732791">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>

@@ -7,7 +7,8 @@ from Games.ScratchTicket import ScratchTicket
 
 
 class AllScratchTickets:
-    def __init__(self):
+    def __init__(self, db):
+        print("Initializing AllScratchTickets")
         site = urllib.request.urlopen(
             "https://ialottery.com/Pages/Games-Scratch/ScratchGamesListing.aspx"
         )
@@ -23,7 +24,7 @@ class AllScratchTickets:
                 price = float(price[1:])
             elif price[2] == "¢":
                 price = float("0." + price[:2])
-            self.games.append(ScratchTicket(item["href"].split("=")[1], price))
+            self.games.append(ScratchTicket(item["href"].split("=")[1], db, price))
 
     def __str__(self):
         toReturn = "Games:\n"
@@ -31,16 +32,14 @@ class AllScratchTickets:
             toReturn += game.gameName + "\n"
         return toReturn
 
-    def setupScratchTickets():
-        print("Getting Scratch Ticket Games")
-        allScratchTickets = AllScratchTickets()
+    def printAllScratchTickets(self):
         print("Scratch Ticket Games")
-        sortbygame = sorted(allScratchTickets.games, key=Game.sortByGameName)
+        sortbygame = sorted(self.games, key=Game.sortByGameName)
         sortbyoverallodds = sorted(
-            allScratchTickets.games, key=Game.sortByOverallOdds, reverse=True
+            self.games, key=Game.sortByOverallOdds, reverse=True
         )
         sortbyondollar = sorted(
-            allScratchTickets.games, key=Game.sortByOnDollar, reverse=True
+            self.games, key=Game.sortByOnDollar, reverse=True
         )
         print("\nsorted by name")
         for y in sortbygame:

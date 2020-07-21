@@ -7,7 +7,8 @@ from Games.InstaPlay import InstaPlay
 
 
 class AllInstaPlays:
-    def __init__(self):
+    def __init__(self, db):
+        print("Initializing AllInstaPlays")
         site = urllib.request.urlopen(
             "https://ialottery.com/Pages/Games-InstaPlay/InstaPlay.aspx"
         )
@@ -22,7 +23,7 @@ class AllInstaPlays:
                 price = float(price[1:])
             elif price[2] == "¢":
                 price = float("0." + price[:2])
-            self.games.append(InstaPlay(item["href"].split("=")[1], price))
+            self.games.append(InstaPlay(item["href"].split("=")[1], db, price))
 
     def __str__(self):
         toReturn = "Games:\n"
@@ -30,16 +31,14 @@ class AllInstaPlays:
             toReturn += game.gameName + "\n"
         return toReturn
 
-    def setupInstaPlays():
-        print("Getting Insta Play Games")
-        allInstaPlays = AllInstaPlays()
+    def printAllInstaPlays(self):
         print("InstaPlay Games")
-        sortbygame = sorted(allInstaPlays.games, key=Game.sortByGameName)
+        sortbygame = sorted(self.games, key=Game.sortByGameName)
         sortbyoverallodds = sorted(
-            allInstaPlays.games, key=Game.sortByOverallOdds, reverse=True
+            self.games, key=Game.sortByOverallOdds, reverse=True
         )
         sortbyondollar = sorted(
-            allInstaPlays.games, key=Game.sortByOnDollar, reverse=True
+            self.games, key=Game.sortByOnDollar, reverse=True
         )
         print("\nsorted by name")
         for y in sortbygame:

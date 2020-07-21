@@ -2,14 +2,14 @@ from Games.Game import Game
 
 
 class InstaPlay(Game):
-    def __init__(self, id, price=-1):
+    def __init__(self, id, db, price=-1):
         # Must be passed a price in order to guarantee proper calculations, as not all lowest prizes are always the cost
-        self.type = Game.INSTAPLAYSTRING
+        self.type = Game.INSTA_PLAY_STRING
         self.link = (
             "https://ialottery.com/Pages/Games-InstaPlay/InstaPlayGamesDetail.aspx?g="
             + str(id)
         )
-        super().__init__(id, price)
+        super().__init__(id, db, price)
 
         # Value of jackpot to make progressive jackpot instaplay "worthwhile", i.e. onDollar > 1
         self.worthwhileValue = self.calculateWorthwhileValue()

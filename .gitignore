@@ -1,1 +1,4 @@
 /venv
+db.sqlite
+Games/__pycache__
+__pycache__
