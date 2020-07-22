@@ -9,8 +9,9 @@ from Games.ScratchTicket import ScratchTicket
 class AllScratchTickets:
     def __init__(self, db):
         print("Initializing AllScratchTickets")
+        self.type = Game.SCRATCH_TICKET_STRING
         site = urllib.request.urlopen(
-            "https://ialottery.com/Pages/Games-Scratch/ScratchGamesListing.aspx"
+            db.getAllUrl(self.type)
         )
         soup = BeautifulSoup(site, features="html.parser")
         scratchListTag = soup.find(id="scratchList")

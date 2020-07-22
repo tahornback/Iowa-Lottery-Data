@@ -21,26 +21,32 @@ class Game:
         self.prizeMoney = None
         self.database = db  # Preferably this would be from dependency injection
 
-        query = self.database.findGameById(id)
-        print(query)
-        # If not in db
-        self.site = urllib.request.urlopen(self.link)
-        self.soup = BeautifulSoup(self.site, features="html.parser")
-        try:
-            self.parseValuesFromSoup()
-            self.calculateNonSoupValues()
-        except AttributeError as err:
-            print(err)
-            self.invalidAll()
-        self.attrs = {
-            "validGame": self.validGame,
-            "gameName": self.gameName,
-            "odds": self.odds,
-            "prizeMoney": self.prizeMoney,
-            "overallOdds": self.overallOdds,
-            "roi": self.roi,
-            "onDollar": self.onDollar,
-        }
+        query = self.database.getGame(self)
+        if query is not None:
+            print(self.id, "found in db")
+        else:
+            print(self.id, "not found in db")
+            # If not in db
+            self.site = urllib.request.urlopen(self.link)
+            self.soup = BeautifulSoup(self.site, features="html.parser")
+            try:
+                self.parseValuesFromSoup()
+                self.calculateNonSoupValues()
+                db.addGame(self)
+            except AttributeError as err:
+                print(err)
+                self.invalidAll()
+            self.attrs = {
+                "validGame": self.validGame,
+                "gameName": self.gameName,
+                "odds": self.odds,
+                "prizeMoney": self.prizeMoney,
+                "overallOdds": self.overallOdds,
+                "roi": self.roi,
+                "onDollar": self.onDollar,
+            }
+
+
 
     def invalidAll(self):
         self.gameName = self.INVALID_GAME

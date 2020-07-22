@@ -27,16 +27,14 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RunManager">
-    <configuration name="IAlot" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+    <configuration name="IAlot" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
       <module name="IALot" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -45,17 +43,12 @@
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IAlot.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="EMULATE_TERMINAL" value="true" />
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.IAlot" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="ServiceViewManager">
     <option name="viewStates">
@@ -83,10 +76,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595297968338">
+    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1595382961111">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595297968338" />
+    <state x="991" y="511" width="1089" height="868" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595382961111" />
     <state x="1231" y="647" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1595295817260">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -96,22 +89,22 @@
     </state>
     <state x="5490" y="-285" key="FileChooserDialogImpl/0.0.3072.1728/3840.-1044.3840.2160@3840.-1044.3840.2160" timestamp="1588116026503" />
     <state x="1320" y="607" key="FileChooserDialogImpl/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290763759" />
-    <state width="3045" height="431" key="GridCell.Tab.0.bottom" timestamp="1595303335513">
+    <state width="3045" height="431" key="GridCell.Tab.0.bottom" timestamp="1595382244668">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.bottom/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
-    <state width="3045" height="431" key="GridCell.Tab.0.center" timestamp="1595303335513">
+    <state width="3045" height="431" key="GridCell.Tab.0.bottom/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595382244668" />
+    <state width="3045" height="431" key="GridCell.Tab.0.center" timestamp="1595382244668">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.center/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
-    <state width="3045" height="431" key="GridCell.Tab.0.left" timestamp="1595303335513">
+    <state width="3045" height="431" key="GridCell.Tab.0.center/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595382244668" />
+    <state width="3045" height="431" key="GridCell.Tab.0.left" timestamp="1595382244668">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.left/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
-    <state width="3045" height="431" key="GridCell.Tab.0.right" timestamp="1595303335513">
+    <state width="3045" height="431" key="GridCell.Tab.0.left/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595382244668" />
+    <state width="3045" height="431" key="GridCell.Tab.0.right" timestamp="1595382244668">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
-    <state width="3045" height="431" key="GridCell.Tab.0.right/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595303335513" />
+    <state width="3045" height="431" key="GridCell.Tab.0.right/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595382244668" />
     <state x="914" y="420" key="SettingsEditor" timestamp="1595298612515">
       <screen x="0" y="0" width="3072" height="1728" />
     </state>
@@ -121,5 +114,9 @@
     </state>
     <state x="1147" y="646" key="com.intellij.ide.util.TipDialog/0.0.3072.1728/3840.-1044.3840.2160@0.0.3072.1728" timestamp="1588115627908" />
     <state x="1147" y="646" key="com.intellij.ide.util.TipDialog/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595290732791" />
+    <state x="1140" y="352" width="791" height="1023" key="find.popup" timestamp="1595372331074">
+      <screen x="0" y="0" width="3072" height="1728" />
+    </state>
+    <state x="1140" y="352" width="791" height="1023" key="find.popup/0.0.3072.1728/3840.-114.2560.1440@0.0.3072.1728" timestamp="1595372331074" />
   </component>
 </project>

@@ -9,8 +9,9 @@ from Games.InstaPlay import InstaPlay
 class AllInstaPlays:
     def __init__(self, db):
         print("Initializing AllInstaPlays")
+        self.type = Game.INSTA_PLAY_STRING
         site = urllib.request.urlopen(
-            "https://ialottery.com/Pages/Games-InstaPlay/InstaPlay.aspx"
+            db.getAllUrl(self.type)
         )
         soup = BeautifulSoup(site, features="html.parser")
         scratchListTag = soup.find(id="scratchList")

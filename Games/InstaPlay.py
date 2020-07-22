@@ -6,7 +6,7 @@ class InstaPlay(Game):
         # Must be passed a price in order to guarantee proper calculations, as not all lowest prizes are always the cost
         self.type = Game.INSTA_PLAY_STRING
         self.link = (
-            "https://ialottery.com/Pages/Games-InstaPlay/InstaPlayGamesDetail.aspx?g="
+            db.getSingleUrl(self.type)
             + str(id)
         )
         super().__init__(id, db, price)

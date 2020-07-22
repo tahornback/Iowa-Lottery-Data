@@ -5,10 +5,11 @@ from database import GameDatabase
 
 if __name__ == "__main__":
     db = GameDatabase()
-    db.initTables()
+    db.dumpContents()
     st = AllScratchTickets(db)
     ip = AllInstaPlays(db)
     pt = AllPullTabs(db)
-    st.printAllScratchTickets()
-    ip.printAllInstaPlays()
-    pt.printAllPullTabs()
+    # st.printAllScratchTickets()
+    # ip.printAllInstaPlays()
+    # pt.printAllPullTabs()
+    db.dumpContents()

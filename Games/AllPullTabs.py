@@ -9,8 +9,9 @@ from Games.PullTab import PullTab
 class AllPullTabs:
     def __init__(self, db):
         print("Initializing AllPullTabs")
+        self.type = Game.PULL_TAB_STRING
         site = urllib.request.urlopen(
-            "https://ialottery.com/Pages/Games-Pulltab/PulltabGamesListing.aspx"
+            db.getAllUrl(self.type)
         )
         soup = BeautifulSoup(site, features="html.parser")
         pullTabTags = soup.find(id="PTList")
