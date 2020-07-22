@@ -5,7 +5,7 @@ from database import GameDatabase
 
 if __name__ == "__main__":
     db = GameDatabase()
-    db.dumpContents()
+    # db.dumpContents()
     st = AllScratchTickets(db)
     ip = AllInstaPlays(db)
     pt = AllPullTabs(db)

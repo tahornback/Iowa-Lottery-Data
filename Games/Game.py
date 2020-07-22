@@ -24,13 +24,16 @@ class Game:
         query = self.database.getGame(self)
         if query is not None:
             print(self.id, "found in db")
+            # print(query)
+            self.gameName = query[2]
+            self.prizeMoney = self.stringListToFloatList(self.stringToList(query[3]))
+            self.odds = self.stringListToFloatList(self.stringToList(query[4]))
         else:
             print(self.id, "not found in db")
-            # If not in db
-            self.site = urllib.request.urlopen(self.link)
-            self.soup = BeautifulSoup(self.site, features="html.parser")
             try:
-                self.parseValuesFromSoup()
+                site = urllib.request.urlopen(self.link)
+                soup = BeautifulSoup(site, features="html.parser")
+                self.parseValuesFromSoup(soup)
                 self.calculateNonSoupValues()
                 db.addGame(self)
             except AttributeError as err:
@@ -67,11 +70,11 @@ class Game:
             self.roi += self.prizeMoney[pos] * self.odds[pos]
         self.onDollar = self.roi / self.price
 
-    def parseValuesFromSoup(self):
-        self.gameName = self.soup.find(
+    def parseValuesFromSoup(self, soup):
+        self.gameName = soup.find(
             id="ContentPlaceHolder1_gameDetail_GameName"
         ).text
-        prizeSet = self.soup.find(id="Prizes")
+        prizeSet = soup.find(id="Prizes")
         self.validGame = True
         table = prizeSet.find_all("td")
         self.prizeMoney = []
@@ -79,7 +82,7 @@ class Game:
         for row in range(0, len(table) - 2, 2):
             temp = table[row].text[1:]
             if temp == "ackpot*":
-                temp = self.soup.find(id="ContentPlaceHolder1_lblIPJPAmount").text[
+                temp = soup.find(id="ContentPlaceHolder1_lblIPJPAmount").text[
                        1:
                        ]
             if temp[0] == "$":
@@ -136,3 +139,12 @@ class Game:
         else:
             return self.INVALID_GAME
         return toReturn
+
+    def stringToList(self, string):
+        return string.replace("[","").replace("]","").split(", ")
+
+    def stringListToFloatList(self, inList):
+        outList = []
+        for elem in inList:
+            outList.append(float(elem))
+        return outList
