@@ -2,3 +2,4 @@
 db.sqlite
 Games/__pycache__
 __pycache__
+.idea
