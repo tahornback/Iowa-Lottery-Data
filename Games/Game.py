@@ -25,6 +25,7 @@ class Game:
         if query is not None:
             print(self.id, "found in db")
             # print(query)
+            self.validGame = True
             self.gameName = query[2]
             self.prizeMoney = self.stringListToFloatList(self.stringToList(query[3]))
             self.odds = self.stringListToFloatList(self.stringToList(query[4]))
@@ -39,15 +40,16 @@ class Game:
             except AttributeError as err:
                 print(err)
                 self.invalidAll()
-            self.attrs = {
-                "validGame": self.validGame,
-                "gameName": self.gameName,
-                "odds": self.odds,
-                "prizeMoney": self.prizeMoney,
-                "overallOdds": self.overallOdds,
-                "roi": self.roi,
-                "onDollar": self.onDollar,
-            }
+        self.calculateNonSoupValues()
+        self.attrs = {
+            "validGame": self.validGame,
+            "gameName": self.gameName,
+            "odds": self.odds,
+            "prizeMoney": self.prizeMoney,
+            "overallOdds": self.overallOdds,
+            "roi": self.roi,
+            "onDollar": self.onDollar,
+        }
 
 
 
@@ -61,14 +63,20 @@ class Game:
         self.prizeMoney = None
 
     def calculateNonSoupValues(self):
-        self.overallOdds = 0
-        for odd in self.odds:
-            self.overallOdds += odd
+        self.calculateOverallOdds()
+        self.CalculateROI()
+
+    def CalculateROI(self):
         self.roi = 0
         self.price = self.prizeMoney[0] if self.price == -1 else self.price
         for pos in range(len(self.odds)):
             self.roi += self.prizeMoney[pos] * self.odds[pos]
         self.onDollar = self.roi / self.price
+
+    def calculateOverallOdds(self):
+        self.overallOdds = 0
+        for odd in self.odds:
+            self.overallOdds += odd
 
     def parseValuesFromSoup(self, soup):
         self.gameName = soup.find(
