@@ -19,8 +19,11 @@ class GameDatabase:
             print("Connection to SQLite DB successful")
             self.cursor = self.connection.cursor()
             print("Cursor successfully created")
-            self.initTables()
-            print("Tables initialized")
+            if not self.cursor.execute("SELECT * FROM sqlite_master").fetchone():
+                self.initTables()
+                print("Tables initialized")
+            else:
+                print("Tables already initialized")
             atexit.register(self.exit)
         except Error as e:
             print(f"The error '{e}' occurred when initializing database")
@@ -28,11 +31,12 @@ class GameDatabase:
     def isAlive(self):
         return self.connection is not None and self.cursor is not None
 
+    # Make this into actual migrations instead of this jank
     def initTables(self):
         if self.isAlive():
             gameTypeToExecute = [
                 "CREATE TABLE GameType (Id INTEGER PRIMARY KEY, Type text, Name text, SingleUrl text, AllUrl text)",
-                "INSERT INTO GameType (Type, Name, SingleUrl, AllUrl) VALUES ('{}', 'Scratch Ticket', "
+                "INSERT INTO GameType (Type, Name, SingleUrl, AllUrl) VALUES ('{}', 'Scratch', "
                 "'https://ialottery.com/Pages/Games-Scratch/ScratchGamesDetail.aspx?g=', "
                 "'https://ialottery.com/Pages/Games-Scratch/ScratchGamesListing.aspx')".format(
                     Game.SCRATCH_TICKET_STRING
@@ -42,7 +46,7 @@ class GameDatabase:
                 "'https://ialottery.com/Pages/Games-InstaPlay/InstaPlay.aspx')".format(
                     Game.INSTA_PLAY_STRING
                 ),
-                "INSERT INTO GameType (Type, Name, SingleUrl, AllUrl) VALUES ('{}', 'Scratch Ticket', "
+                "INSERT INTO GameType (Type, Name, SingleUrl, AllUrl) VALUES ('{}', 'Pulltab', "
                 "'https://ialottery.com/Pages/Games-Pulltab/PulltabGamesDetail.aspx?g=', "
                 "'https://ialottery.com/Pages/Games-Pulltab/PulltabGamesListing.aspx')".format(
                     Game.PULL_TAB_STRING
