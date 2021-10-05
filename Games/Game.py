@@ -117,11 +117,11 @@ class Game:
         # Returns new ROI if jackpot is nonzero or prizeMoney/odds have been modified.
         roi = 0
         for pos in range(len(self.odds) - 1):
-            roi += self.prizeMoney[pos] * self.odds[pos]
+            roi += self.prizeMoney[pos] / self.odds[pos]
         if jackpot != 0:
-            roi += jackpot * self.odds[-1]
+            roi += jackpot / self.odds[-1]
         else:
-            roi += self.prizeMoney[-1] * self.odds[-1]
+            roi += self.prizeMoney[-1] / self.odds[-1]
         return roi
 
     def __str__(self):
