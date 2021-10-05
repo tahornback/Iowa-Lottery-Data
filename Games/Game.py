@@ -70,13 +70,13 @@ class Game:
         self.roi = 0
         self.price = self.prizeMoney[0] if self.price == -1 else self.price
         for pos in range(len(self.odds)):
-            self.roi += self.prizeMoney[pos] * self.odds[pos]
+            self.roi += self.prizeMoney[pos] / self.odds[pos]
         self.onDollar = self.roi / self.price
 
     def calculateOverallOdds(self):
         self.overallOdds = 0
         for odd in self.odds:
-            self.overallOdds += odd
+            self.overallOdds += 1 / odd
 
     def parseValuesFromSoup(self, soup):
         self.gameName = soup.find(
@@ -99,10 +99,7 @@ class Game:
             temp = float(temp)
             self.prizeMoney.append(temp)
             split = table[row + 1].text.split(" ")
-            oddsDecimal = float(split[1].replace(",", "")) / float(
-                split[3].replace(",", "")
-            )
-            self.odds.append(oddsDecimal)
+            self.odds.append(float(split[3].replace(",", "")))
 
     def sortByGameName(self):
         return self.attrs["gameName"]

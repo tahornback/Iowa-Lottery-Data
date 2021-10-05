@@ -1,6 +1,6 @@
 # Things to do
 
-- [ ] Store fractional values as integers, where the integer is the denominator (i.e., store `5` instead of `.2`) because floats
+- [x] Store fractional values as they appear on the page, where the value stored is the denominator (i.e., store `5.0` instead of `0.2`) because floats can get weird
 - [ ] Handle jackpots differently, rather than store their current jackpot value in db.
   - If jackpot, force requery page?
 - [ ] async page requests
